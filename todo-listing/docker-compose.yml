@@ -1,0 +1,28 @@
+version: '1.0'
+
+services:
+  datasource:
+    image: mysql
+      command: --default-authentication-plugin=mysql_native_password
+      restart: always
+      environment:
+        MYSQL_ROOT_PASSWORD:
+      hostname: localhost
+      ports:
+       - 3306:3306
+
+
+  backend:
+    build: .
+    image: todo-listing:v1.0
+    hostname: backend
+    ports:
+      - 8091:8091
+    depends_on:
+      datasource:
+        condition: service_healthy
+    environment:
+      - spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
+      - spring.datasource.url=jdbc:mysql://localhost:3306/todolist?useSSL=false
+      - spring.datasource.username=root
+      - spring.datasource.password=
