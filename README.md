@@ -1,10 +1,10 @@
 # todo-list
 
-# Prerequisite:
+### Prerequisite:    
     1. Java 15
     2. Mysql 5.7
     3. Maven
-
+### ToDo:
     Step-1: Create database and import data using "todolist.sql" script
     Step-2: Enter into "todo-listing"
     Step-3: Run Maven command "mvn spring-boot:run"
